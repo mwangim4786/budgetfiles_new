@@ -1,0 +1,77 @@
+
+{% extends "page_template.html" %}
+{% block contents %}
+
+    <div class="content">
+
+        <section class="places">
+
+            <h1>Transactions</h1>
+
+            <table id="transactions_table" class="display" style="width:100%">
+                <thead style="background: #055041; color: #FFFFFF">
+                    <th style="padding: 5px;">Trans_No</th>
+                    <th style="padding: 5px;">Budget_Id</th>
+                    <th style="padding: 5px;">User</th>
+                    <th style="padding: 5px;">Date</th>
+                    <th style="padding: 5px;">Status</th>
+                    <th style="padding: 5px;">Amount</th>
+                    <th style="padding: 5px;">Description</th>
+                    <th style="padding: 5px;">Action</th>
+                </thead>
+                <tbody>
+                    
+                    {% if data %}
+                    
+                        {% for values in data.values() %}
+                        <tr>
+                            <td style="padding: 5px;">{{ values['trans_No'] }}</td>
+                            <td style="padding: 5px;">{{ values['budget_Id'] }}</td>
+                            <td style="padding: 5px;">{{ values['user'] }}</td>
+                            <td style="padding: 5px;">{{ values['date'] }}</td>
+                            <td style="padding: 5px;">{{ values['status'] }}</td>
+                            <td style="padding: 5px;">{{ values['amount'] }}</td>
+                            <td style="padding: 5px;">{{ values['description'] }}</td>
+                            <td style="padding: 5px;"><button style="width: 100px; height: 25px; background-color: rgb(255, 149, 0);">Edit</button></td>
+                        </tr>
+                        {% endfor %}
+                    
+                    {% endif %}
+                    
+                </tbody>
+            </table>
+
+
+
+
+            <!-- <article>
+                <h1>Article One</h1>
+            </article>
+
+            <article>
+                <h1>Article Two</h1>
+            </article>
+
+            <article>
+                <h1>Article Three</h1>
+            </article> -->
+
+
+        </section>
+
+    </div>
+
+
+
+{% endblock contents %}
+
+
+
+
+
+
+
+
+
+
+

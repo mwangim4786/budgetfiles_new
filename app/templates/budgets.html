@@ -1,0 +1,90 @@
+{% extends "page_template.html" %}
+{% block contents %}
+
+
+    <div class="content">
+
+        <section class="places">
+
+            <div style="float: left;">
+                <h1>My Budgets</h1>
+            </div>
+            
+            <div style="overflow: hidden; float: right;">
+                <!-- Button trigger modal -->
+                <a href="{{ url_for('create_budget') }}" style="text-decoration: none;">
+                    <button type="button" class="btn btn-outline-info">
+                        Request new budget
+                    </button>
+                </a>
+            </div>
+                
+
+
+
+            <table id="users_table" class="display" style="width:100%">
+                <thead style="background: #055041; color: #FFFFFF">
+                    <th style="padding: 5px;">Amount</th>
+                    <th style="padding: 5px;">Date</th>
+                    <th style="padding: 5px;">Name</th>
+                    <th style="padding: 5px;">Phone</th>
+                    <th style="padding: 5px;">Role</th>
+                    <th style="padding: 5px;">Purpose</th>
+                    <th style="padding: 5px;">Status</th>
+                </thead>
+                <tbody>
+                    
+                    {% if budgets %}
+                    
+                        {% for budget in budgets %}
+                            {% if budget.phone == current_user %}
+
+
+                                <tr class="budget_row">
+                                    <td style="padding: 5px;"><a href="{{ url_for('budget', budget_id=budget.id) }}" style="text-decoration: none; color: inherit;">{{ budget.amount }}</a></td>
+                                    <td style="padding: 5px;">{{ budget.date.strftime('%d-%m-%Y, %H:%M') }}</td>
+                                    <td style="padding: 5px;">{{ budget.phone.name }}</td>
+                                    <td style="padding: 5px;">{{ budget.phone.phone }}</td>
+                                    <td style="padding: 5px;">{{ budget.phone.role }}</td>
+                                    <td style="padding: 5px;">{{ budget.purpose }}</td>
+                                    {% if budget.status == 0 %}
+                                        <td style="padding: 5px;"><button type="button" class="btn btn-warning btn-sm">Pending</button></td>
+                                    {% elif budget.status == 1 %}
+                                        <td style="padding: 5px;"><button type="button" class="btn btn-success btn-sm">Approved</button></td>
+                                    {% endif %}
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    
+                    {% endif %}
+                    
+                </tbody>
+            </table>
+
+
+
+
+
+
+
+        </section>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+{% endblock contents %}

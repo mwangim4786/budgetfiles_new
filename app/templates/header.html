@@ -1,0 +1,53 @@
+<style>
+header {
+	margin-left: 200px;
+	background-color: #055041;
+	height: 48px;
+	/* width: 100%; */
+	
+	border-bottom: 1px solid #CCCCCC;
+}
+.user {
+    display: inline;
+    vertical-align: middle;
+    height: 100%;
+    float: right;
+    width: 25%;
+    color: #FFFFFF;
+    line-height: 20px;
+    border-left: 1px solid #DDDDDD;
+}
+</style>
+
+<header>
+    <div class="user">
+        {% if current_user.is_authenticated %}
+            <nav class="nav">
+                <a class="nav-link disabled" style="color: aliceblue;" href="#">{{ current_user.name }}</a>
+                <div class="dropdown show">
+                    <a class="dropdown-toggle nav-link active" style="color: aliceblue;" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Logout
+                    </a>
+                  
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" href="{{ url_for('logout') }}">Confirm Logout</a>
+                    </div>
+                  </div>
+
+
+
+
+            </nav>
+        {% else %}
+            <nav class="nav">
+                <a class="nav-link disabled" style="color: aliceblue;" href="{{ url_for('login') }}">Log In</a>
+                <a class="nav-link active" style="color: aliceblue;" href="{{ url_for('register') }}">Register</a>
+            </nav>
+        {% endif %}
+    </div>
+    <!-- <button style="border-right: 1px grey solid;">Search</button>
+    <button style="border-right: 1px grey solid;">Search</button>
+    <button >Search</button> -->
+</header>
+
+
